@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace TP_03.Repositorio
+{
+    class RepositorioPessoa
+    {
+        static List<Pessoa> AniversarioList = new List<Pessoa>();
+
+        #region Método de Criação de um objeto
+        public static void CriarPessoa(StringBuilder csv)
+        {
+            Console.Write("Digite o seu nome: ");
+            string nome = Console.ReadLine();
+            csv.AppendLine(nome);
+            Console.Write("Digite o seu sobrenome: ");
+            string sobrenome = Console.ReadLine();
+            csv.AppendLine(sobrenome);
+            Console.WriteLine("Agora,informe a data do seu próximo aniversário ,que iremos calcular quantos dias faltam. ");
+            DateTime aniversario = DateTime.Parse(Console.ReadLine());
+            csv.AppendLine(Convert.ToString(aniversario));
+            Pessoa aniversariante = new Pessoa(nome, sobrenome, aniversario);
+            AniversarioList.Add(aniversariante);
+            aniversariante.CalcularQuantosDiasFaltam();
+
+            Console.WriteLine("***************************************");
+        }
+        #endregion
+        #region  Método de Busca
+
+
+        static void BuscarPessoa()
+        {
+            Console.Write("Digite o nome da pessoa que deseja pesquisar: ");
+            var pesquisaNome = Console.ReadLine();
+            Console.Write("Digite o sobrenome da pessoa que deseja pesquisar: ");
+            var pesquisaSobrenome = Console.ReadLine();
+
+            foreach (Pessoa x in AniversarioList)          // Para cada objeto Pessoa adicionado na lista
+            {
+                if (pesquisaNome == x.Nome && pesquisaSobrenome == x.Sobrenome)
+                {
+                    Console.WriteLine($"Olá , {x.Nome} {x.Sobrenome} "); x.CalcularQuantosDiasFaltam();
+
+                }
+            }
+        }
+        #endregion
+        #region  Método de Deleção
+        public static void DeletarPessoa()
+        {
+            Console.Write("Digite o nome da pessoa que deseja pesquisar: ");
+            var pesquisaNome = Console.ReadLine();
+            Console.Write("Digite o sobrenome da pessoa que deseja pesquisar: ");
+            var pesquisaSobrenome = Console.ReadLine();
+
+            foreach (Pessoa x in AniversarioList)          // Para cada objeto Pessoa adicionado na lista
+            {
+                if (pesquisaNome == x.Nome && pesquisaSobrenome == x.Sobrenome)
+                {
+                    Console.WriteLine("Deseja apagar esses dados? (S/N) ");
+                    var opcao = Console.ReadLine();
+                    Console.WriteLine(x.Nome);
+                    Console.WriteLine(x.Sobrenome);
+                    Console.WriteLine(x.DiaAniversario);
+
+                    if (opcao == "S")
+                    {
+                        AniversarioList.Remove(x);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Operação Cancelada");
+                    };
+
+                }
+            }
+
+            #endregion
+        }
+ } }
