@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+
+namespace TP_03
+{
+    class Program
+    {
+     #region Lista criada como propriedade da classe
+        static List<Pessoa> AniversarioList = new List<Pessoa>();
+
+        #endregion
+
+        static void Main(string[] args)
+        {
+            Diretorio
+            var diretorio = "dir";
+            Directory.CreateDirectory(diretorio);
+
+            
+             Arquivo
+            var nomeArquivo = "aniversarios.csv";
+            var caminhoArquivo = Path.Combine(diretorio, nomeArquivo);
+
+     
+            var csv = new StringBuilder();
+
+             Método de Criação de um objeto
+            static void CriarPessoa(StringBuilder csv)
+            {
+                Console.Write("Digite o seu nome: ");
+                string nome = Console.ReadLine();
+                csv.AppendLine(nome);
+                Console.Write("Digite o seu sobrenome: ");
+                string sobrenome = Console.ReadLine();
+                csv.AppendLine(sobrenome);
+                Console.WriteLine("Agora,informe a data do seu próximo aniversário ,que iremos calcular quantos dias faltam. ");
+                DateTime aniversario = DateTime.Parse(Console.ReadLine());
+                csv.AppendLine(Convert.ToString(aniversario));
+                Pessoa aniversariante = new Pessoa(nome, sobrenome, aniversario);
+                AniversarioList.Add(aniversariante);
+                aniversariante.CalcularQuantosDiasFaltam();
+
+                Console.WriteLine("***************************************");
+            }
