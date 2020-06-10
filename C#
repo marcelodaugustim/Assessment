@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using TP_03.Repositorio;
 
 namespace TP_03
 {
@@ -17,33 +18,78 @@ namespace TP_03
 
         static void Main(string[] args)
         {
-            Diretorio
+            #region Diretorio
             var diretorio = "dir";
             Directory.CreateDirectory(diretorio);
 
-            
-             Arquivo
+            #endregion
+            #region  Arquivo
             var nomeArquivo = "aniversarios.csv";
             var caminhoArquivo = Path.Combine(diretorio, nomeArquivo);
 
-     
+            #endregion
             var csv = new StringBuilder();
 
-             Método de Criação de um objeto
-            static void CriarPessoa(StringBuilder csv)
-            {
-                Console.Write("Digite o seu nome: ");
-                string nome = Console.ReadLine();
-                csv.AppendLine(nome);
-                Console.Write("Digite o seu sobrenome: ");
-                string sobrenome = Console.ReadLine();
-                csv.AppendLine(sobrenome);
-                Console.WriteLine("Agora,informe a data do seu próximo aniversário ,que iremos calcular quantos dias faltam. ");
-                DateTime aniversario = DateTime.Parse(Console.ReadLine());
-                csv.AppendLine(Convert.ToString(aniversario));
-                Pessoa aniversariante = new Pessoa(nome, sobrenome, aniversario);
-                AniversarioList.Add(aniversariante);
-                aniversariante.CalcularQuantosDiasFaltam();
 
-                Console.WriteLine("***************************************");
-            }
+            Console.WriteLine("Agenda de Aniversário");
+
+
+            #region Menu
+            while (true)
+            {
+                Console.WriteLine("Menu:");
+
+                Console.WriteLine(" 1 - Cadastrar ");
+                Console.WriteLine(" 2 - Buscar ");
+                Console.WriteLine(" 3 - Deletar  ");
+                Console.WriteLine(" 4 - Sair ");
+
+                Console.Write("Digite a opção desejada: ");
+                int opcaoEscolhida = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("*************************");
+          
+                #region Opções de escolha
+                switch (opcaoEscolhida)
+                {
+                    case 1:
+                        CriarPessoa(csv);
+
+                        break;
+
+                    case 2:
+
+                        BuscarPessoa();
+
+                        break;
+
+                    case 3:
+                        DeletarPessoa();
+                       
+                        break;
+                  
+                    case 4:
+                        break;
+                }
+
+                #endregion
+
+                #region Voltar para o Menu
+                Console.WriteLine("Voltar para o Menu? (S/N) ");
+                var segundaOpcao = Console.ReadLine();
+                if (segundaOpcao == "N")
+                {
+                    break;
+                }
+
+                Console.WriteLine("****************************************");
+                #endregion
+
+  }
+            #endregion
+        }
+    }
+   
+}
+
+
