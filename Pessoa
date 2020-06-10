@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.Design;
+using System.Linq;
+using System.Text;
+
+namespace TP_03
+{
+    public class Pessoa
+    {
+
+        public string Nome { get; set; }
+        public string Sobrenome { get; set; }
+        public DateTime DataNascimento { get; set; }
+        public DateTime DiaAniversario { get; set; }
+
+        public Pessoa(string nome, string sobrenome, DateTime aniversario)
+        {
+            this.Nome = nome;
+            this.Sobrenome = sobrenome;
+            this.DiaAniversario = aniversario;
+        }
+
+        public void CalcularQuantosDiasFaltam()
+        {
+            double diferençaDatas = DiaAniversario.Subtract(DateTime.Today).TotalDays;
+
+            if (diferençaDatas == 0)
+            {
+                Console.WriteLine($"Parabéns!!!!!! Hoje é o seu aniversário.\r\n");
+            }
+            else
+            {
+                Console.WriteLine($"Falta(m) {diferençaDatas} dia(s) para o seu aniversário.\r\n");
+            }
+        }
