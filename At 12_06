@@ -1,0 +1,86 @@
+using Assessment.Teste;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using TP_03.Repositorio;
+
+
+namespace TP_03
+{
+    class Program
+    {
+ 
+        static void Main(string[] args)
+        {
+
+
+            var csv = new StringBuilder();
+
+            Console.WriteLine("Agenda de Aniversário");
+
+            #region Menu
+            while (true)
+            {
+                Console.WriteLine("Menu:");
+
+                Console.WriteLine(" 1 - Cadastrar ");
+                Console.WriteLine(" 2 - Buscar ");
+                Console.WriteLine(" 3 - Deletar  ");
+                Console.WriteLine(" 4 - Sair ");
+
+                Console.Write("Digite a opção desejada: ");
+                int opcaoEscolhida = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("*************************");
+          
+                #region Opções de escolha
+                switch (opcaoEscolhida)
+                {
+                    case 1:
+                        RepositorioPessoa.CriarPessoa(csv);
+                       
+                        Arquivo.EscreverArquivo();
+
+                        break;
+
+                    case 2:
+
+                        RepositorioPessoa.BuscarPessoa();
+
+                        break;
+
+                    case 3:
+                        RepositorioPessoa.DeletarPessoa();
+                       
+                        break;
+                  
+                    case 4:
+                        break;
+                }
+
+                #endregion
+
+                #region Voltar para o Menu
+                Console.WriteLine("Voltar para o Menu? (S/N) ");
+                var segundaOpcao = Console.ReadLine();
+                if (segundaOpcao == "N")
+                {
+                    break;
+                }
+
+                Console.WriteLine("****************************************");
+                #endregion
+
+                //Arquivo.LerArquivo();
+            }
+            #endregion
+
+
+        }
+    }
+   
+}
