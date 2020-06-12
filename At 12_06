@@ -43,7 +43,7 @@ namespace TP_03
                     case 1:
                         RepositorioPessoa.CriarPessoa(csv);
                        
-                        Arquivo.EscreverArquivo();
+                        RepositorioPessoa.EscreverArquivo();
 
                         break;
 
@@ -75,7 +75,7 @@ namespace TP_03
                 Console.WriteLine("****************************************");
                 #endregion
 
-                //Arquivo.LerArquivo();
+                RepositorioPessoa.LerArquivo();
             }
             #endregion
 
