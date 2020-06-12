@@ -1,0 +1,71 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using TP_03;
+using TP_03.Repositorio;
+
+namespace Assessment.Teste
+{
+   public class Arquivo
+    {
+      
+
+        public static void EscreverArquivo()
+        {
+            #region Diretorio
+            var diretorio = "dir";
+            Directory.CreateDirectory(diretorio);
+
+            #endregion
+            var csv = new StringBuilder();
+            csv.AppendLine("Nome;Sobrenome;Aniversário");
+            #region  Arquivo
+            var nomeArquivo = "aniversarios.csv";
+            var caminhoArquivo = Path.Combine(diretorio, nomeArquivo);
+            File.WriteAllText(caminhoArquivo, csv.ToString());
+
+            #endregion
+
+            
+        }
+
+        #region Ler de um arquivo
+        //public static void LerArquivo()
+        //{
+        //    var diretorio = "dir";
+        //    var nomeArquivo = "aniversarios.csv";
+        //    var caminhoArquivo = Path.Combine(diretorio, nomeArquivo);
+        //    var linhas = File.ReadAllLines(caminhoArquivo);
+
+        //    List<Pessoa> listaAniversario = new List<Pessoa>();
+
+        //    foreach (var linha in linhas)
+        //    {
+        //        string nome = ",";
+        //        string sobrenome = ",";
+        //        DateTime aniversario = new DateTime();
+        //        Pessoa aniversariante = new Pessoa(nome, sobrenome, aniversario);
+
+        //        Char[] tokens = new Char[] { ';', ',', '\n' };
+        //        string[] dadosAniversariantes = linha.Split(tokens);
+                
+        //        listaAniversario.Add(aniversariante);
+
+        //        Console.WriteLine("Lista de Amigos");
+
+        //    }
+
+        //    foreach (var c in listaAniversario)
+        //    {
+        //        Console.WriteLine(c.Nome);
+        //        Console.WriteLine(c.Sobrenome);
+        //        Console.WriteLine(c.DiaAniversario);
+        //        Console.WriteLine("******************");
+        //    }
+
+
+        //}
+        //#endregion
+    }
+}
