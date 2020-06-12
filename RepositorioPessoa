@@ -4,11 +4,12 @@ using System.Text;
 
 namespace TP_03.Repositorio
 {
-    class RepositorioPessoa
+    
+    public static class RepositorioPessoa
     {
-        static List<Pessoa> AniversarioList = new List<Pessoa>();
+        private static List<Pessoa> AniversarioList = new List<Pessoa>();
 
-        #region Método de Criação de um objeto
+       
         public static void CriarPessoa(StringBuilder csv)
         {
             Console.Write("Digite o seu nome: ");
@@ -26,11 +27,9 @@ namespace TP_03.Repositorio
 
             Console.WriteLine("***************************************");
         }
-        #endregion
-        #region  Método de Busca
-
-
-        static void BuscarPessoa()
+      
+        //tem que ser publica
+        public static void BuscarPessoa()
         {
             Console.Write("Digite o nome da pessoa que deseja pesquisar: ");
             var pesquisaNome = Console.ReadLine();
@@ -46,9 +45,8 @@ namespace TP_03.Repositorio
                 }
             }
         }
-        #endregion
-        #region  Método de Deleção
-        public static void DeletarPessoa()
+
+       public static void DeletarPessoa()
         {
             Console.Write("Digite o nome da pessoa que deseja pesquisar: ");
             var pesquisaNome = Console.ReadLine();
@@ -76,7 +74,6 @@ namespace TP_03.Repositorio
 
                 }
             }
-
-            #endregion
         }
- } }
+    }
+}    
