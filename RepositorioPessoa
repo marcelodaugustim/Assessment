@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 
 namespace TP_03.Repositorio
 {
-    
+    // essa classe tem que ser estática, para poder usar sem instanciar (usar o new)
     public static class RepositorioPessoa
     {
+        // deve ser private para que nada fora daqui acesse ela
         private static List<Pessoa> AniversarioList = new List<Pessoa>();
 
        
@@ -75,5 +77,57 @@ namespace TP_03.Repositorio
                 }
             }
         }
+       public static void EscreverArquivo()
+        {
+            #region Diretorio
+            var diretorio = "dir";
+            Directory.CreateDirectory(diretorio);
+
+            #endregion
+            var csv = new StringBuilder();
+            csv.AppendLine("Nome;Sobrenome;Aniversário");
+            #region  Arquivo
+            var nomeArquivo = "aniversarios.csv";
+            var caminhoArquivo = Path.Combine(diretorio, nomeArquivo);
+            File.WriteAllText(caminhoArquivo, csv.ToString());
+
+            #endregion
+
+
+        }
+
+        public static void LerArquivo()
+        {
+            var diretorio = "dir";
+            var nomeArquivo = "aniversarios.csv";
+            var caminhoArquivo = Path.Combine(diretorio, nomeArquivo);
+            var linhas = File.ReadAllLines(caminhoArquivo);
+
+
+            foreach (var linha in linhas)
+            {
+                string nome = ",";
+                string sobrenome = ",";
+                DateTime aniversario = new DateTime();
+                Pessoa aniversariante = new Pessoa(nome, sobrenome, aniversario);
+
+                Char[] tokens = new Char[] { ';', ',', '\n' };
+                string[] dadosAniversariantes = linha.Split(tokens);
+
+                AniversarioList.Add(aniversariante);
+
+                Console.WriteLine("Lista de Amigos");
+
+            }
+
+            foreach (var c in AniversarioList)
+            {
+                Console.WriteLine(c.Nome);
+                Console.WriteLine(c.Sobrenome);
+                Console.WriteLine(c.DiaAniversario);
+                Console.WriteLine("******************");
+            }
+
+        }
     }
-}    
+}
