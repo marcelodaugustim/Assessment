@@ -1,0 +1,86 @@
+using System;
+using System.Text;
+using TP_03.Repositorio;
+using System.IO;
+using System.Linq;
+
+
+namespace TP_03
+{
+    class Program
+    {
+ 
+        static void Main(string[] args)
+        {
+
+
+            var csv = new StringBuilder();
+
+            Console.WriteLine("Agenda de Aniversário");
+
+            #region Menu
+            while (true)
+            {
+                Console.WriteLine("Menu:");
+
+                Console.WriteLine(" 1 - Cadastrar ");
+                Console.WriteLine(" 2 - Buscar ");
+                Console.WriteLine(" 3 - Deletar  ");
+                Console.WriteLine(" 4 - Editar ");
+                Console.WriteLine(" 5 - Sair ");
+
+                Console.Write("Digite a opção desejada: ");
+                int opcaoEscolhida = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("*************************");
+          
+                #region Opções de escolha
+                switch (opcaoEscolhida)
+                {
+                    case 1:
+                        RepositorioPessoa.CriarPessoa(csv);
+                      
+                        break;
+
+                    case 2:
+
+                        RepositorioPessoa.BuscarPessoa();
+
+                        break;
+
+                    case 3:
+                        RepositorioPessoa.DeletarPessoa();
+                       
+                        break;
+                  
+                    case 4:
+                        RepositorioPessoa.EditarPessoa();
+                        
+                        break;
+                    
+                    case 5:
+                        break;
+                }
+
+                #endregion
+
+                #region Voltar para o Menu
+                Console.WriteLine("Voltar para o Menu? (S/N) ");
+                var segundaOpcao = Console.ReadLine();
+                if (segundaOpcao == "N")
+                {
+                    break;
+                }
+
+                Console.WriteLine("****************************************");
+                #endregion
+
+                RepositorioPessoa.LerArquivo();
+            }
+            #endregion
+
+
+        }
+    }
+   
+}
